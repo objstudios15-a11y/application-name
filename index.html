@@ -1,66 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Apartment Application</title>
-  <style>
-    body { font-family: Arial; background:#f5f5f5; }
-    .container {
-      max-width:800px; margin:40px auto;
-      background:white; padding:25px;
-      border-radius:10px;
-    }
-    input, textarea, select {
-      width:100%; padding:8px; margin-top:8px;
-      border-radius:5px; border:1px solid #ccc;
-    }
-    button {
-      margin-top:20px; width:100%;
-      padding:12px; background:#2c7be5;
-      color:white; border:none; border-radius:5px;
-      font-size:16px;
-    }
-    h1 { text-align:center; }
-    .fee { color:red; text-align:center; font-weight:bold; }
-  </style>
+<meta charset="UTF-8">
+<title>2-Bedroom Apartment Application</title>
+
+<style>
+body {
+  font-family: Arial;
+  background:#f4f6f8;
+  margin:0;
+}
+.container {
+  max-width:900px;
+  margin:30px auto;
+  background:white;
+  padding:25px;
+  border-radius:10px;
+}
+h1 { text-align:center; }
+h2 { margin-top:25px; }
+input, textarea, select {
+  width:100%;
+  padding:10px;
+  margin-top:8px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+button {
+  margin-top:20px;
+  width:100%;
+  padding:14px;
+  background:#111;
+  color:white;
+  border:none;
+  border-radius:6px;
+  font-size:16px;
+}
+.fee {
+  text-align:center;
+  color:#d00000;
+  font-weight:bold;
+  margin-bottom:15px;
+}
+</style>
 </head>
+
 <body>
 
 <div class="container">
+
   <h1>2-Bedroom Apartment Application</h1>
   <div class="fee">$35 Application Fee Required</div>
 
   <form id="appForm">
 
-    <h2>Personal Info</h2>
+    <h2>1. Personal Information</h2>
     <input id="name" placeholder="Full Name" required>
     <input type="date" id="dob" required>
-    <input id="phone" placeholder="Phone" required>
-    <input id="email" placeholder="Email" required>
+    <input id="phone" placeholder="Phone Number" required>
+    <input id="email" placeholder="Email Address" required>
 
-    <h2>Address</h2>
-    <input id="address" placeholder="Current Address">
-
-    <h2>Employment</h2>
-    <input id="employer" placeholder="Employer">
+    <h2>2. Employment Information</h2>
+    <h3>Current Employer</h3>
+    <input id="company" placeholder="Company Name">
+    <input id="position" placeholder="Position">
+    <input id="length" placeholder="Length of Employment">
     <input id="income" placeholder="Monthly Income">
+    <input id="supervisor" placeholder="Supervisor Name & Contact">
 
-    <h2>Occupants</h2>
-    <textarea id="occupants" placeholder="List occupants"></textarea>
+    <h3>Previous Employer</h3>
+    <input id="prevCompany" placeholder="Company Name">
+    <input id="prevPosition" placeholder="Position">
+    <input id="prevLength" placeholder="Length of Employment">
 
-    <h2>Background</h2>
+    <h2>5. Additional Income</h2>
+    <input id="incomeSource" placeholder="Source">
+    <input id="incomeAmount" placeholder="Monthly Amount">
+
+    <h2>6. Occupants</h2>
+    <textarea id="occupants" placeholder="Name / Age / Relationship"></textarea>
+
+    <h2>7. Rental History & Background</h2>
     <select id="evicted">
       <option>No evictions</option>
       <option>Yes</option>
     </select>
 
-    <h2>Pets</h2>
+    <select id="lease">
+      <option>No broken leases</option>
+      <option>Yes</option>
+    </select>
+
+    <select id="felony">
+      <option>No felonies</option>
+      <option>Yes</option>
+    </select>
+
+    <textarea id="explain" placeholder="If yes, explain"></textarea>
+
+    <h2>8. Pets</h2>
     <select id="pets">
       <option>No pets</option>
       <option>Yes</option>
     </select>
+    <input id="petDetails" placeholder="Type / Breed / Weight">
+
+    <h2>9. Emergency Contact</h2>
+    <input id="emName" placeholder="Name">
+    <input id="emRel" placeholder="Relationship">
+    <input id="emPhone" placeholder="Phone Number">
+
+    <h2>10. Agreement & Signature</h2>
+    <input id="signature" placeholder="Type Full Name as Signature" required>
+    <input type="date" id="sigDate" required>
+
+    <label>
+      <input type="checkbox" required>
+      I certify all information is true and authorize a background check
+    </label>
 
     <button type="submit">Continue to Payment</button>
+
   </form>
 
 </div>
@@ -69,25 +129,38 @@
 document.getElementById("appForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  // Collect form data
   const data = {
-    name: document.getElementById("name").value,
-    dob: document.getElementById("dob").value,
-    phone: document.getElementById("phone").value,
-    email: document.getElementById("email").value,
-    address: document.getElementById("address").value,
-    employer: document.getElementById("employer").value,
-    income: document.getElementById("income").value,
-    occupants: document.getElementById("occupants").value,
-    evicted: document.getElementById("evicted").value,
-    pets: document.getElementById("pets").value
+    name: name.value,
+    dob: dob.value,
+    phone: phone.value,
+    email: email.value,
+    company: company.value,
+    position: position.value,
+    length: length.value,
+    income: income.value,
+    supervisor: supervisor.value,
+    prevCompany: prevCompany.value,
+    prevPosition: prevPosition.value,
+    prevLength: prevLength.value,
+    incomeSource: incomeSource.value,
+    incomeAmount: incomeAmount.value,
+    occupants: occupants.value,
+    evicted: evicted.value,
+    lease: lease.value,
+    felony: felony.value,
+    explain: explain.value,
+    pets: pets.value,
+    petDetails: petDetails.value,
+    emName: emName.value,
+    emRel: emRel.value,
+    emPhone: emPhone.value,
+    signature: signature.value,
+    sigDate: sigDate.value
   };
 
-  // Save data temporarily
   localStorage.setItem("rentalApp", JSON.stringify(data));
 
-  // Redirect to Stripe Payment Link
-  window.location.href = "https://buy.stripe.com/YOUR_PAYMENT_LINK";
+  window.location.href = "https://buy.stripe.com/14AdR21il5ZygFg4OpbfO00";
 });
 </script>
 
