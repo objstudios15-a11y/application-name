@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Apartment Application</title>
+  <style>
+    body { font-family: Arial; background:#f5f5f5; }
+    .container {
+      max-width:800px; margin:40px auto;
+      background:white; padding:25px;
+      border-radius:10px;
+    }
+    input, textarea, select {
+      width:100%; padding:8px; margin-top:8px;
+      border-radius:5px; border:1px solid #ccc;
+    }
+    button {
+      margin-top:20px; width:100%;
+      padding:12px; background:#2c7be5;
+      color:white; border:none; border-radius:5px;
+      font-size:16px;
+    }
+    h1 { text-align:center; }
+    .fee { color:red; text-align:center; font-weight:bold; }
+  </style>
+</head>
+<body>
 
+<div class="container">
+  <h1>2-Bedroom Apartment Application</h1>
+  <div class="fee">$35 Application Fee Required</div>
+
+  <form id="appForm">
+
+    <h2>Personal Info</h2>
+    <input id="name" placeholder="Full Name" required>
+    <input type="date" id="dob" required>
+    <input id="phone" placeholder="Phone" required>
+    <input id="email" placeholder="Email" required>
+
+    <h2>Address</h2>
+    <input id="address" placeholder="Current Address">
+
+    <h2>Employment</h2>
+    <input id="employer" placeholder="Employer">
+    <input id="income" placeholder="Monthly Income">
+
+    <h2>Occupants</h2>
+    <textarea id="occupants" placeholder="List occupants"></textarea>
+
+    <h2>Background</h2>
+    <select id="evicted">
+      <option>No evictions</option>
+      <option>Yes</option>
+    </select>
+
+    <h2>Pets</h2>
+    <select id="pets">
+      <option>No pets</option>
+      <option>Yes</option>
+    </select>
+
+    <button type="submit">Continue to Payment</button>
+  </form>
+
+</div>
+
+<script>
+document.getElementById("appForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  // Collect form data
+  const data = {
+    name: document.getElementById("name").value,
+    dob: document.getElementById("dob").value,
+    phone: document.getElementById("phone").value,
+    email: document.getElementById("email").value,
+    address: document.getElementById("address").value,
+    employer: document.getElementById("employer").value,
+    income: document.getElementById("income").value,
+    occupants: document.getElementById("occupants").value,
+    evicted: document.getElementById("evicted").value,
+    pets: document.getElementById("pets").value
+  };
+
+  // Save data temporarily
+  localStorage.setItem("rentalApp", JSON.stringify(data));
+
+  // Redirect to Stripe Payment Link
+  window.location.href = "https://buy.stripe.com/YOUR_PAYMENT_LINK";
+});
+</script>
+
+</body>
+</html>
